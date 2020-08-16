@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"lenslocked.com/controllers"
 	"lenslocked.com/views"
 
 	"github.com/gorilla/mux"
@@ -12,7 +13,6 @@ import (
 var (
 	homeView    *views.View
 	contactView *views.View
-	signupView  *views.View
 )
 
 func home(w http.ResponseWriter, r *http.Request) {
@@ -25,22 +25,18 @@ func contact(w http.ResponseWriter, r *http.Request) {
 	must(contactView.Render(w, nil))
 }
 
-func signup(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "text/html")
-	must(signupView.Render(w, nil))
-}
-
 func main() {
 	fmt.Println("starting main")
 	homeView = views.NewView("bootstrap", "views/home.gohtml")
 	contactView = views.NewView("bootstrap", "views/contact.gohtml")
-	signupView = views.NewView("bootstrap", "views/signup.gohtml")
+	usersC := controllers.NewUsers()
 
 	r := mux.NewRouter()
+
+	//below we are passing the function itself not the results of the function
 	r.HandleFunc("/", home)
 	r.HandleFunc("/contact", contact)
-	r.HandleFunc("/signup", signup)
-
+	r.HandleFunc("/signup", usersC.New)
 	http.ListenAndServe(":3000", r)
 }
 
