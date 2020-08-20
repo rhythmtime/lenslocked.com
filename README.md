@@ -2,6 +2,8 @@
 
 An awesome photo gallery application written in GO!
 
+Atom select a word and then Ctrl-Cmd-g to select all instances of the word
+
 go get -u github.com/gorilla/schema
 
 -u means get the latest Update

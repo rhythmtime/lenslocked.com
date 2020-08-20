@@ -12,7 +12,7 @@ import (
 //initial setup.
 func NewUsers() *Users {
 	return &Users{
-		NewView: views.NewView("bootstrap", "views/users/new.gohtml"),
+		NewView: views.NewView("bootstrap", "users/new"),
 	}
 }
 
@@ -32,8 +32,6 @@ func (u *Users) New(w http.ResponseWriter, r *http.Request) {
 
 // struct tags point to fields in a struct
 // these are used in json
-// these require the reflect package
-// the reflect package is for very advanced users!
 // this is explained in gorilla schema docs
 // the words following schema: refer to the name <input name= in the gohtml
 type SignupForm struct {
