@@ -8,6 +8,9 @@ go get -u github.com/gorilla/schema
 
 schema is one of the packages in the gorilla toolkit
 
+DRY up your code   
+Don't Repeat Yourself
+
 CRUD HTTP methods
 Create Post
 Read   Get
